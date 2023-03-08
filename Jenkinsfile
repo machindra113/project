@@ -1,8 +1,5 @@
 pipeline{
     agent any
-    tools {
-      maven 'maven3'
-    }
     environment {
       DOCKER_TAG = getVersion()
     }
@@ -11,12 +8,6 @@ pipeline{
             steps{
                 git credentialsId: 'github', 
                     url: 'https://github.com/machindra113/project.git'
-            }
-        }
-        
-        stage('Maven Build'){
-            steps{
-                sh "mvn clean package"
             }
         }
         
