@@ -10,7 +10,7 @@ pipeline{
         stage('SCM'){
             steps{
                 git credentialsId: 'github', 
-                    url: 'https://github.com/Swanandd55/new.git'
+                    url: 'https://github.com/machindra113/project.git'
             }
         }
         
@@ -22,17 +22,17 @@ pipeline{
         
         stage('Docker Build'){
             steps{
-                sh "docker build . -t swanandd55/webapp:${DOCKER_TAG} "
+                sh "docker build . -t machindra111/webapp:${DOCKER_TAG} "
             }
         }
         
         stage('DockerHub Push'){
             steps{
                 withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpwd')]) {
-                    sh "docker login -u swanandd55 -p ${dockerhubpwd}"
+                    sh "docker login -u machindra111 -p ${dockerhubpwd}"
                 }
                 
-                sh "docker push swanandd55/webapp:${DOCKER_TAG} "
+                sh "docker push machindra111/webapp:${DOCKER_TAG} "
             }
         }
         
